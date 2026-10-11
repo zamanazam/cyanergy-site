@@ -45,7 +45,7 @@
               <span>+ machine learning</span>
             </div>
             <div>
-              <strong>10+ yrs</strong>
+              <strong><span data-count="10" data-suffix="+ yrs">0+ yrs</span></strong>
               <span>Env tech experience</span>
             </div>
           </div>
@@ -116,30 +116,52 @@
             <span>Houston · Fleet analytics &amp; emissions monitoring</span>
           </div>
         </div>
-        <div class="mock-panel reveal" aria-label="Executive dashboard panel">
-          <div class="mock-panel-head">
-            <strong>Executive Dashboard</strong>
-            <span>Rig Alpha · YTD</span>
-          </div>
-          <div class="mock-kpis">
-            <div class="mock-kpi"><small>Fuel consumed</small><strong>1.28M L</strong><span class="trend">−7% vs LY</span></div>
-            <div class="mock-kpi"><small>CO₂e</small><strong>3,420 t</strong><span class="trend">−12% vs LY</span></div>
-            <div class="mock-kpi"><small>Avg load</small><strong>64%</strong></div>
-            <div class="mock-kpi"><small>Runtime</small><strong>18,640 h</strong></div>
-          </div>
-          <div class="mock-chart">
-            <div class="mock-chart-label">Monthly fuel trend</div>
-            <div class="mock-bars" aria-hidden="true">
-              <span style="--h:42%"></span>
-              <span style="--h:58%"></span>
-              <span style="--h:51%"></span>
-              <span style="--h:72%"></span>
-              <span style="--h:66%"></span>
-              <span style="--h:80%"></span>
-              <span style="--h:74%"></span>
-              <span style="--h:61%"></span>
+        <div class="panel-showcase reveal">
+          <aside class="float-chip float-rating" aria-label="CO2e reduction">
+            <span class="float-chip-icon cloud" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 15a4 4 0 1 1 1.2-7.8A5 5 0 0 1 21 12a3.5 3.5 0 0 1-1 6.8H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong><span data-count="12" data-prefix="−" data-suffix="%">−0%</span> CO₂e</strong>
+              <span>Year-over-year</span>
+            </div>
+          </aside>
+
+          <div class="mock-panel" aria-label="Executive dashboard panel">
+            <div class="mock-panel-head">
+              <strong>Executive Dashboard</strong>
+              <span>Rig Alpha · YTD</span>
+            </div>
+            <div class="mock-kpis">
+              <div class="mock-kpi"><small>Fuel consumed</small><strong><span data-count="1.28" data-decimals="2" data-suffix="M L">0.00M L</span></strong><span class="trend">−7% vs LY</span></div>
+              <div class="mock-kpi"><small>CO₂e</small><strong><span data-count="3420" data-format="comma" data-suffix=" t">0 t</span></strong><span class="trend">−12% vs LY</span></div>
+              <div class="mock-kpi"><small>Avg load</small><strong><span data-count="64" data-suffix="%">0%</span></strong></div>
+              <div class="mock-kpi"><small>Runtime</small><strong><span data-count="18640" data-format="comma" data-suffix=" h">0 h</span></strong></div>
+            </div>
+            <div class="mock-chart">
+              <div class="mock-chart-label">Monthly fuel trend</div>
+              <div class="mock-bars" aria-hidden="true">
+                <span style="--h:42%"></span>
+                <span style="--h:58%"></span>
+                <span style="--h:51%"></span>
+                <span style="--h:72%"></span>
+                <span style="--h:66%"></span>
+                <span style="--h:80%"></span>
+                <span style="--h:74%"></span>
+                <span style="--h:61%"></span>
+              </div>
             </div>
           </div>
+
+          <aside class="float-chip float-uptime" aria-label="Average load">
+            <span class="float-chip-icon load" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V10M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <div>
+              <strong><span data-count="64" data-suffix="%">0%</span> load</strong>
+              <span>Fleet average</span>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

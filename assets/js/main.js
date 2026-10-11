@@ -13,6 +13,14 @@
     document.body.classList.toggle('menu-open', open);
   };
 
+  const syncHeaderScroll = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 24);
+  };
+
+  syncHeaderScroll();
+  window.addEventListener('scroll', syncHeaderScroll, { passive: true });
+
   if (toggle && nav) {
     toggle.addEventListener('click', () => {
       setMenuOpen(!nav.classList.contains('is-open'));
@@ -48,12 +56,57 @@
     reveals.forEach((el) => el.classList.add('is-visible'));
   }
 
-  window.setTimeout(() => {
-    document.querySelectorAll('.hero .eyebrow-hero, .hero h1, .hero-lead, .hero .btn-group, .hero-float').forEach((el) => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-  }, 1200);
+  const formatValue = (value, decimals, useComma) => {
+    const fixed = value.toFixed(decimals);
+    if (!useComma) return fixed;
+    const [whole, fraction] = fixed.split('.');
+    const withComma = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return fraction !== undefined ? `${withComma}.${fraction}` : withComma;
+  };
+
+  const animateCount = (el) => {
+    const target = Number(el.dataset.count || 0);
+    const decimals = Number(el.dataset.decimals || 0);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const useComma = el.dataset.format === 'comma';
+    const duration = 1400;
+    const start = performance.now();
+
+    const render = (value) => {
+      el.textContent = `${prefix}${formatValue(value, decimals, useComma)}${suffix}`;
+    };
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      render(target * eased);
+      if (progress < 1) requestAnimationFrame(tick);
+      else render(target);
+    };
+
+    render(0);
+    requestAnimationFrame(tick);
+  };
+
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    if ('IntersectionObserver' in window) {
+      const counterIo = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateCount(entry.target);
+            counterIo.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.35 }
+      );
+      counters.forEach((el) => counterIo.observe(el));
+    } else {
+      counters.forEach((el) => animateCount(el));
+    }
+  }
 
   document.querySelectorAll('[data-demo-form]').forEach((form) => {
     form.addEventListener('submit', (event) => {
